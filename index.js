@@ -38,14 +38,14 @@ class GuessTheNumberGame {
 
     // BTN GUESS LISTENER
     this.$btn_guess.addEventListener('click', () => {
-      this.handleGuess(this);
+      this.handleGuess();
       soundBtn.currentTime = 0;
       soundBtn.play();
     });
 
     // BTN RESET LISTENER
     this.$btn_reset.addEventListener('click', () => {
-      this.resetGame(this);
+      this.resetGame();
       soundBtn.currentTime = 0;
       soundBtn.play();
     });
