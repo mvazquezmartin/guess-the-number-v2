@@ -3,7 +3,8 @@ const alert = (status, title, message) => {
     icon: status,
     title: title,
     text: message,
-    color: '#bbb',
+    color: '#ffffff',
+    background: "#282C34"
   });
 };
 

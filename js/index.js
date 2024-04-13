@@ -129,7 +129,7 @@ $btnnumbers.forEach((button) => {
       alert(
         'warning',
         'Magic Number',
-        `You are so weak like my friend the bojo: ${guessTheNumberInit.game_number}`
+        `You are so weak like my friend Bojo: ${guessTheNumberInit.game_number}`
       );
       konami_code = '';
     }
