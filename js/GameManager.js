@@ -28,7 +28,7 @@ export default class GameManager {
         icon: 'success',
         result_icon: trophy,
         alert_icon: "🏆",
-        message: `You win! The Magic Number was ${this.magicNumber}`,
+        message: `You win! The Number was ${this.magicNumber}`,
       };
     }
 
@@ -38,7 +38,7 @@ export default class GameManager {
         icon: 'error',
         alert_icon: '😓',
         result_icon: sadFace,
-        message: `The Magic Number was ${this.magicNumber}`,
+        message: `The Number was ${this.magicNumber}`,
       };
     }
 
