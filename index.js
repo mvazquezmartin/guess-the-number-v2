@@ -60,7 +60,7 @@ class GuessTheNumberGame {
     const numberGuess = Number(input_value);
 
     if (input_value === '') {
-      alert('warning', 'Something is not okay', 'Please enter a valid number.');
+      alert('warning', 'INVALID INPUT', 'Please enter a valid number.');
       return;
     }
 
