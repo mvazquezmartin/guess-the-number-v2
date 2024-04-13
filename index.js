@@ -14,7 +14,7 @@ class GuessTheNumberGame {
     this.$attemps = document.querySelectorAll('.attemps-counts');
     this.sound_numbers = new Audio('./assets/click-numbers.wav');
     this.sound_guess = new Audio('./assets/click-btn-guess.wav');
-    this.sound_reset = new Audio('./assets/click-btn-reset.wav');
+    this.sound_reset = new Audio('./assets/click-btn-reset2.wav');
 
     // NUMERIC KEYBOARD LISTENER
     this.$btn_numbers.forEach((button) => {
@@ -46,8 +46,8 @@ class GuessTheNumberGame {
     // BTN RESET LISTENER
     this.$btn_reset.addEventListener('click', () => {
       this.resetGame();
-      this.sound_numbers.currentTime = 0;
-      this.sound_numbers.play();
+      this.sound_reset.currentTime = 0;
+      this.sound_reset.play();
     });
   }
 
