@@ -1,8 +1,8 @@
 import GameManager from './GameManager.js';
 import alert from './sweetAlert.js';
 
-const soundNumbers = new Audio('../assets/click-numbers.wav');
-const soundBtn = new Audio('../assets/click-btn.wav');
+const soundNumbers = new Audio('/../assets/click-numbers.wav');
+const soundBtn = new Audio('/../assets/click-btn.wav');
 
 class GuessTheNumberGame {
   constructor() {
