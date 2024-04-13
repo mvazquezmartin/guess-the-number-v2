@@ -14,7 +14,7 @@ body {
   flex-direction: column-reverse;
   justify-content: start;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   padding: 0;
   @media only screen and (max-width: 480px) {
@@ -187,7 +187,7 @@ body {
           text-align: center;
           display: inline-block;
           margin: 0px 2px;
-          font-weight: bold;
+          font-weight: 400;
           padding: 12px;
           background-color: lightgray;
           text-shadow: -1px -1px black, 1px 1px #ffffff;

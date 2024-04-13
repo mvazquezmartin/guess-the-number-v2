@@ -1,9 +1,6 @@
 import GameManager from './js/GameManager.js';
 import alert from './js/sweetAlert.js';
 
-const soundNumbers = new Audio('./assets/click-numbers.wav');
-const soundBtn = new Audio('./assets/click-btn.wav');
-
 class GuessTheNumberGame {
   constructor() {
     this.game = new GameManager();
@@ -15,6 +12,9 @@ class GuessTheNumberGame {
     this.$input_number = document.querySelector('#input-number');
     this.$counter = document.querySelector('#counter');
     this.$attemps = document.querySelectorAll('.attemps-counts');
+    this.sound_numbers = new Audio('./assets/click-numbers.wav');
+    this.sound_guess = new Audio('./assets/click-btn-guess.wav');
+    this.sound_reset = new Audio('./assets/click-btn-reset.wav');
 
     // NUMERIC KEYBOARD LISTENER
     this.$btn_numbers.forEach((button) => {
@@ -31,23 +31,23 @@ class GuessTheNumberGame {
         }
 
         this.$input_number.textContent = valueInput;
-        soundNumbers.currentTime = 0;
-        soundNumbers.play();
+        this.sound_numbers.currentTime = 0;
+        this.sound_numbers.play();
       });
     });
 
     // BTN GUESS LISTENER
     this.$btn_guess.addEventListener('click', () => {
       this.handleGuess();
-      soundBtn.currentTime = 0;
-      soundBtn.play();
+      this.sound_guess.currentTime = 0;
+      this.sound_guess.play();
     });
 
     // BTN RESET LISTENER
     this.$btn_reset.addEventListener('click', () => {
       this.resetGame();
-      soundBtn.currentTime = 0;
-      soundBtn.play();
+      this.sound_numbers.currentTime = 0;
+      this.sound_numbers.play();
     });
   }
 
@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const $btnnumbers = document.querySelectorAll('.btn-number');
 const $btnGuess = document.querySelector('.guess-btn');
-let konami_code = '';
 const konami = guessTheNumberInit.konami;
+let konami_code = '';
 
 $btnnumbers.forEach((button) => {
   button.addEventListener('click', () => {
