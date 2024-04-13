@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const $btnnumbers = document.querySelectorAll('.btn-number');
 const $btnGuess = document.querySelector('.guess-btn');
+const $inputNumber = document.querySelector('#input-number');
 const konami = guessTheNumberInit.konami;
 let konami_code = '';
 
@@ -132,6 +133,7 @@ $btnnumbers.forEach((button) => {
         `You are so weak like my friend Bojo: ${guessTheNumberInit.game_number}`
       );
       konami_code = '';
+      $inputNumber.textContent = '';
     }
   });
 });
