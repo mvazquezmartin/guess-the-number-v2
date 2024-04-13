@@ -1,0 +1,141 @@
+import GameManager from './GameManager.js';
+import alert from './sweetAlert.js';
+
+const soundNumbers = new Audio('../assets/click-numbers.wav');
+const soundBtn = new Audio('../assets/click-btn.wav');
+
+class GuessTheNumberGame {
+  constructor() {
+    this.game = new GameManager();
+    this.game_number = this.game.magicNumber;
+    this.konami = this.game.konami;
+    this.$btn_reset = document.querySelector('.reset-btn');
+    this.$btn_guess = document.querySelector('.guess-btn');
+    this.$btn_numbers = document.querySelectorAll('.btn-number');
+    this.$input_number = document.querySelector('#input-number');
+    this.$counter = document.querySelector('#counter');
+    this.$attemps = document.querySelectorAll('.attemps-counts');
+
+    // NUMERIC KEYBOARD LISTENER
+    this.$btn_numbers.forEach((button) => {
+      button.addEventListener('click', () => {
+        const valueBtn = button.textContent;
+        let valueInput = this.$input_number.textContent;
+
+        if (valueInput === '00') valueInput = '';
+
+        valueInput += valueBtn;
+
+        if (valueInput.length > 2) {
+          valueInput = valueInput.slice(-1);
+        }
+
+        this.$input_number.textContent = valueInput;
+        soundNumbers.currentTime = 0;
+        soundNumbers.play();
+      });
+    });
+
+    // BTN GUESS LISTENER
+    this.$btn_guess.addEventListener('click', () => {
+      this.handleGuess(this);
+      soundBtn.currentTime = 0;
+      soundBtn.play();
+    });
+
+    // BTN RESET LISTENER
+    this.$btn_reset.addEventListener('click', () => {
+      this.resetGame(this);
+      soundBtn.currentTime = 0;
+      soundBtn.play();
+    });
+  }
+
+  handleGuess() {
+    if (this.game.isFinished) {
+      return;
+    }
+
+    const input_value = this.$input_number.textContent.trim();
+    const numberGuess = Number(input_value);
+
+    if (input_value === '') {
+      alert('warning', 'Something is not okay', 'Please enter a valid number.');
+      return;
+    }
+
+    const gameInput = this.game.tryGuess(numberGuess);
+    this.updateGameUI(gameInput);
+    this.$input_number.textContent = '';
+  }
+
+  updateGameUI(result) {
+    this.$counter.textContent = this.game.attemptsMsg();
+
+    for (let i = 0; i < this.$attemps.length; i++) {
+      const attemptContainer = this.$attemps[i];
+      const arrowSpan = attemptContainer.querySelector('span:nth-child(1)');
+      const numberSpan = attemptContainer.querySelector('span:nth-child(2)');
+
+      if (!arrowSpan.textContent && !numberSpan.textContent) {
+        arrowSpan.innerHTML = result.result_icon;
+        numberSpan.textContent = this.$input_number.textContent;
+        break;
+      }
+    }
+
+    if ('message' in result) {
+      setTimeout(() => {
+        alert(result.icon, result.alert_icon, result.message);
+      }, 100);
+    }
+  }
+
+  resetGame() {
+    this.game.reset();
+    this.$counter.textContent = this.game.attemptsMsg();
+    this.$input_number.textContent = '00';
+
+    const attemptContainers = this.$attemps;
+    for (let i = 0; i < attemptContainers.length; i++) {
+      const attemptContainer = attemptContainers[i];
+      const arrowSpan = attemptContainer.querySelector('span:nth-child(1)');
+      const numberSpan = attemptContainer.querySelector('span:nth-child(2)');
+      arrowSpan.textContent = '';
+      numberSpan.textContent = '';
+    }
+
+    this.game_number = this.game.magicNumber;
+  }
+}
+
+const guessTheNumberInit = new GuessTheNumberGame();
+
+document.addEventListener('DOMContentLoaded', () => {
+  guessTheNumberInit;
+});
+
+const $btnnumbers = document.querySelectorAll('.btn-number');
+const $btnGuess = document.querySelector('.guess-btn');
+let konami_code = '';
+const konami = guessTheNumberInit.konami;
+
+$btnnumbers.forEach((button) => {
+  button.addEventListener('click', () => {
+    const valueBtn = button.textContent;
+    konami_code += valueBtn;
+
+    if (konami_code.includes(konami)) {
+      alert(
+        'warning',
+        'Magic Number',
+        `You are so weak like my friend the bojo: ${guessTheNumberInit.game_number}`
+      );
+      konami_code = '';
+    }
+  });
+});
+
+$btnGuess.addEventListener('click', () => {
+  konami_code = '';
+});
