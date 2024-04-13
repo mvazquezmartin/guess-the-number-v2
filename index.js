@@ -14,7 +14,7 @@ class GuessTheNumberGame {
     this.$attemps = document.querySelectorAll('.attemps-counts');
     this.sound_numbers = new Audio('./assets/click-numbers.wav');
     this.sound_guess = new Audio('./assets/click-btn-guess.wav');
-    this.sound_reset = new Audio('./assets/click-btn-reset2.wav');
+    this.sound_reset = new Audio('./assets/click-btn-reset.wav');
 
     // NUMERIC KEYBOARD LISTENER
     this.$btn_numbers.forEach((button) => {
