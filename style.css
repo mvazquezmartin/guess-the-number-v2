@@ -13,8 +13,7 @@ body {
   display: flex;
   flex-direction: column-reverse;
   justify-content: start;
-  align-items: center;
-  min-height: 100dvh;
+  align-items: center;  
   margin: 8px;
   padding: 0;
   @media only screen and (max-width: 480px) {
