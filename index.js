@@ -40,6 +40,7 @@ class GuessTheNumberGame {
     this.$btn_guess.addEventListener('click', () => {
       this.handleGuess();
       this.sound_guess.currentTime = 0;
+      this.sound_guess.volume = 0.5;
       this.sound_guess.play();
     });
 
@@ -47,6 +48,7 @@ class GuessTheNumberGame {
     this.$btn_reset.addEventListener('click', () => {
       this.resetGame();
       this.sound_reset.currentTime = 0;
+      this.sound_reset.volume = 0.5;
       this.sound_reset.play();
     });
   }
