@@ -55,3 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/)
 
+## Author
+- [@mvazquezmartin](https://github.com/mvazquezmartin)
+
